@@ -67,7 +67,7 @@ Secara garis besar dalam penyusunan dotfiles, kita akan memindahkan berkas konfi
 Misalkan saja anda ingin membuat dotfiles untuk konfigurasi `bash shell (.bashrc)`, setelah memiliki repositori dotfiles. 
 
 ``` 
-$ mkdir -p ~/$HOME/dotfiles/bash
+$ mkdir -p ~/dotfiles/bash
 ```
 
 Perintah mkdir -p diatas akan mempersingkat pembuatan direktori bertingkat atau `recursive` jika belum ada.
