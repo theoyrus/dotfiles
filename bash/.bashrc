@@ -51,8 +51,8 @@ white=$(tput setaf 7)
 user_color="$bold$green"
 [ "$UID" -eq 0 ] && { user_color="$bold$red"; }
 
-export PS1="\[$reset\][\[$cyan\]\A\[$reset\]]\[$user_color\]\u@\h\
-\[$white\]:\[$blue\]\W\[$reset\] \[$white\]\
+export PS1="\[$reset\][\[$cyan\]\A\[$reset\]]\[$user_color\]\u\[$reset\]\[$yellow\]@\[$reset\]\[$magenta\]\h\
+\[$white\]:\[$green\]\W\[$reset\] \[$white\]\
 \\n$\[$reset\] "
 
 #export PS1='\[\e[1;32m\]\u@\h\e[0;39m\]:\e[1;34m\]\w\e[0;39m\]$\[\e[0m\] '
