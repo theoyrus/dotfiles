@@ -8,6 +8,7 @@ alias chmodalld='find . -type d -exec chmod 755 -- {} +'
 alias chmodallf='find . -type f -exec chmod 644 -- {} +'
 alias swappiness5='sudo sysctl vm.swappiness=5'
 alias swappiness10='sudo sysctl vm.swappiness=10'
+alias lsl='ls -la'
 
 # alias for docker management
 alias dock='docker '
