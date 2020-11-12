@@ -134,6 +134,11 @@ export NVM_DIR="$HOME/.nvm"
 #export PROJECT_HOME=$HOME/virtualenv
 #source /usr/local/bin/virtualenvwrapper.sh
 
+#pyenv
+# export PATH="$HOME/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
 
 #composer bin path
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
