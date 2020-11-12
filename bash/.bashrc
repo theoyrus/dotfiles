@@ -135,9 +135,10 @@ export NVM_DIR="$HOME/.nvm"
 #source /usr/local/bin/virtualenvwrapper.sh
 
 #pyenv
-# export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
+pyenv shell system # default use python system
 
 
 #composer bin path
