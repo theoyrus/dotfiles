@@ -16,6 +16,7 @@ alias dcstart='docker-compose up -d' # start as daemon
 alias dcstop='docker-compose stop; docker-compose rm -f' #stop and remove container created by docker-compose
 alias dcup='docker-compose up -d' # start as daemon (another alias)
 alias dcdown='docker-compose down' #stop and remove container created by docker-compose (simple stop)
+alias dcrestart='dcdown && dcup'
 alias dps='docker ps' #show docker process
 alias dcps='docker-compose ps' #show docker-compose process
 alias chwp='xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-1/workspace0/last-image -s $1'
@@ -25,6 +26,7 @@ mkcd() { mkdir -p "$@" && cd "$@"; }
 
 dcupf() { docker-compose -f "$@" up -d; }
 dcdownf() { docker-compose -f "$@" down; }
+dcrestartf() { docker-compose -f "$@" down; docker-compose -f "$@" up -d; }
 
 #NPM DAN KRONI-KRONINYA
 export NPM_PACKAGES="$HOME/.npm-packages"
