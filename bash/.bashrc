@@ -134,18 +134,31 @@ export NVM_DIR="$HOME/.nvm"
 #export PROJECT_HOME=$HOME/virtualenv
 #source /usr/local/bin/virtualenvwrapper.sh
 
-#pyenv
+# pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-pyenv shell system # default use python system
+eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+#pyenv shell system # default use python system
 
+# Python bin, Created by `userpath` on 2020-11-15 12:09:07
+export PATH="$PATH:$HOME/.local/bin"
+
+# pipenv
+# enable autocompletion
+# eval "$(pipenv --completion)"
+
+# pipx
+# enable autocomplete
+#eval "$(register-python-argcomplete pipx)"
+
+# Jetbrains PyCharm
+#export PATH="/opt/jetbrains/pycharm/bin:$PATH"
 
 #composer bin path
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 #geoserver HOME
-export GEOSERVER_HOME="$HOME/geoserver"
+#export GEOSERVER_HOME="$HOME/geoserver"
 
 #HOMEBREW on Linux
 #test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
