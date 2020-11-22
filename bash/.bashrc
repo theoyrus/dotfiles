@@ -23,6 +23,8 @@ alias chwp='xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-1/wor
 # custom
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
+dcupf() { docker-compose -f "$@" up -d; }
+dcdownf() { docker-compose -f "$@" down; }
 
 #NPM DAN KRONI-KRONINYA
 export NPM_PACKAGES="$HOME/.npm-packages"
