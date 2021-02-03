@@ -9,6 +9,7 @@ alias chmodallf='find . -type f -exec chmod 644 -- {} +'
 alias swappiness5='sudo sysctl vm.swappiness=5'
 alias swappiness10='sudo sysctl vm.swappiness=10'
 alias lsl='ls -la'
+alias cleands='find . -name '.DS_Store' -type f -delete'
 
 # alias for docker management
 alias dock='docker '
@@ -22,7 +23,9 @@ alias dcps='docker-compose ps' #show docker-compose process
 alias chwp='xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-1/workspace0/last-image -s $1'
 
 alias gxadd='git update-index --assume-unchanged ' # add git file excluded locally 
+alias gxrem='git update-index --no-assume-unchanged ' # remove git file excluded locally
 alias gxls='git ls-files -v | grep ^h' # show git file excluded locally 
+alias gxcom='git reset --soft HEAD~1' # cancel latest commit
 
 # custom
 mkcd() { mkdir -p "$@" && cd "$@"; }
