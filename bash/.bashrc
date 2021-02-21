@@ -156,6 +156,8 @@ export PATH="$PATH:$HOME/.local/bin"
 # pipenv
 # enable autocompletion
 # eval "$(pipenv --completion)"
+# enable auto create if not exists .venv dir inside project dir
+export PIPENV_VENV_IN_PROJECT=1
 
 # pipx
 # enable autocomplete
