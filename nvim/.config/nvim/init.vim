@@ -3,7 +3,15 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
+Plug 'honza/vim-snippets'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Vim move line
+Plug 'matze/vim-move'
+
+" Vim Lazygit
+Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
 
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -64,6 +72,9 @@ let g:fzf_preview_window = 'right:60%'
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+" move key modifier
+let g:move_key_modifier = 'C'
+
 if (has('termguicolors'))
  set termguicolors
 endif
@@ -106,6 +117,11 @@ highlight EndOfBuffer guifg=bg
 
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml PrettierAsync
 
+" Leader map key is space
+nnoremap <SPACE> <Nop>
+let mapleader      = " "
+let maplocalleader = " "
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -132,6 +148,9 @@ vnoremap <Space> zf
 nnoremap <Leader>g :silent lgrep<Space>
 nnoremap <silent> [f :lprevious<CR>
 nnoremap <silent> ]f :lnext<CR>
+
+" setup mapping to call :LazyGit
+nnoremap <silent> <leader>lg :LazyGit<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC Configs
