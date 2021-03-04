@@ -96,7 +96,7 @@ bindsym $mod+$i3-wm.binding.terminal exec /usr/bin/x-terminal-emulator
 ## Launch // Browser // <><Shift> Enter ##
 set_from_resource $i3-wm.binding.browser i3-wm.binding.browser Shift+Return
 # bindsym $mod+$i3-wm.binding.browser exec gtk-launch $(xdg-settings get default-web-browser)
-bindsym $mod+$i3-wm.binding.browser exec gtk-launch /usr/bin/google-chrome-stable --password-store=basic %U
+bindsym $mod+$i3-wm.binding.browser exec /usr/bin/google-chrome-stable --password-store=basic %U
 
 set_from_resource $rofiTheme rofi.theme /etc/regolith/styles/lascaille/rofi.rasi
 
