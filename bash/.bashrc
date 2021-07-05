@@ -34,6 +34,9 @@ dcupf() { docker-compose -f "$@" up -d; }
 dcdownf() { docker-compose -f "$@" down; }
 dcrestartf() { docker-compose -f "$@" down; docker-compose -f "$@" up -d; }
 
+#git
+gstashstag() { git stash push -m "$@" -- $(git diff --staged --name-only); }
+
 #NPM DAN KRONI-KRONINYA
 export NPM_PACKAGES="$HOME/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules${NODE_PATH:+:$NODE_PATH}"
