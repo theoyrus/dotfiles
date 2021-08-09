@@ -10,6 +10,7 @@ alias swappiness5='sudo sysctl vm.swappiness=5'
 alias swappiness10='sudo sysctl vm.swappiness=10'
 alias lsl='ls -lah'
 alias cleands='find . -name '.DS_Store' -type f -delete'
+alias fmem='sudo ps_mem'
 
 # alias for docker management
 alias dock='docker '
