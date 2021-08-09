@@ -36,6 +36,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'mhinz/vim-startify'
 Plug 'alvan/vim-closetag'
 
+Plug 'ryanoasis/vim-devicons'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'StanAngeloff/php.vim'
@@ -57,8 +59,13 @@ Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
+" ==============================================================================
+" Plugin customisation & configurations
+
 let NERDTreeMinimalUI = 1
 let NERDTreeIgnore=['__pycache__', 'node_modules']
+" NERDTree devicons 
+let g:webdevicons_enable_nerdtree = 1
 
 let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
@@ -66,14 +73,52 @@ let g:move_map_keys = 0
 let g:prettier#autoformat = 0
 let g:rustfmt_autosave = 1
 let g:comfortable_motion_no_default_key_mappings = 1
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|build|dist)|(\.(swp|ico|git|svn))$'
-let g:fzf_layout = { 'down': '~50%' }
+
+" VIM Airline
+let g:airline_powerline_fonts = 1
+
+" CtrlP 
+" let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|build|dist)|(\.(swp|ico|git|svn))$'
+
+" Default fzf layout
+" - Popup window
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+" - down / up / left / right
+"let g:fzf_layout = { 'down': '40%' }
 let g:fzf_preview_window = 'right:60%' 
+
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " move key modifier
 let g:move_key_modifier = 'C'
+
+" PHP CS ==============================
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxtOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
+
+" php-cs-fixer
+let g:php_cs_fixer_rules = "@PSR2"
+let g:php_cs_fixer_php_path="/usr/local/bin/php-cs-fixer"
+let g:php_cs_fixer_enable_default_mapping = 1
+let g:php_cs_fixer_dry_run = 0
+let g:php_cs_fixer_verbose = 0
+
+autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+" ===============================================
+
+" ==============================================================================
+" VIM Setup
 
 if (has('termguicolors'))
  set termguicolors
@@ -85,11 +130,12 @@ endif
 
 set laststatus=0
 set textwidth=100
-set noruler
+set ruler
+set colorcolumn=80
 set incsearch
 set hlsearch
 set number
-set spell
+" set spell
 set formatoptions+=o
 set autoindent
 set cindent
@@ -99,7 +145,8 @@ set expandtab
 set nojoinspaces
 
 set cursorline
-set background=dark
+set cursorcolumn
+" set background=dark
 " set rtp+=/usr/local/opt/fzf
 set rtp+=~/opt/fzf/
 set clipboard=unnamedplus
@@ -108,6 +155,9 @@ colorscheme one
 
 syntax enable
 set encoding=utf8
+
+" Font
+" --set guifont=FiraCode\ 11
 
 filetype plugin indent on
 
@@ -151,6 +201,9 @@ nnoremap <silent> ]f :lnext<CR>
 
 " setup mapping to call :LazyGit
 nnoremap <silent> <leader>lg :LazyGit<CR>
+
+" Reload init
+command! Reload :so ~/.config/neovim/init.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC Configs
@@ -312,13 +365,37 @@ nmap vs :vsplit<cr>
 nmap sp :split<cr>
 
 " QUICK MOVE SPLIT NAVIGATION
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
+" nmap <C-h> <C-w>h
+" nmap <C-j> <C-w>j
+" nmap <C-k> <C-w>k
+" nmap <C-l> <C-w>l
+
+" =============================================================================
+" Mapping
+" =============================================================================
+
+" Make \w toggle through the three wrapping modes.
+
+:function ToggleWrap()
+: if (&wrap == 1)
+:   if (&linebreak == 0)
+:     set linebreak
+:   else
+:     set nowrap
+:   endif
+: else
+:   set wrap
+:   set nolinebreak
+: endif
+:endfunction
+
+map <leader>z :call ToggleWrap()<CR>
 
 " Quick close buffers
-nmap <C-x> :Bdelete<CR>
+nmap <C-x> :q<CR>
+
+" Quick save current
+nmap <C-s> :w<CR>
 
 nnoremap <C-i> :IndentGuidesToggle<CR>
 nnoremap <C-t> :tabnew<CR>
@@ -358,27 +435,6 @@ au BufNewFile, BufRead *.js, *.html, *.css
       \ set tabstop=2 |
       \ set softtabstop=2 |
       \ set shiftwidth=2
-
-" PHP
-function! PhpSyntaxOverride()
-  hi! def link phpDocTags phpDefine
-  hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxtOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
-" php-cs-fixer
-let g:php_cs_fixer_rules = "@PSR2"
-let g:php_cs_fixer_php_path="/usr/local/bin/php-cs-fixer"
-let g:php_cs_fixer_enable_default_mapping = 1
-let g:php_cs_fixer_dry_run = 0
-let g:php_cs_fixer_verbose = 0
-
-autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Dart file auto detection
 au BufRead, BufNewFile *.dart set filetype=dart
