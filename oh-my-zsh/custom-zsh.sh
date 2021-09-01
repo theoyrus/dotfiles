@@ -87,3 +87,5 @@ export PIPENV_VENV_IN_PROJECT=1
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # export GOPATH="$HOME/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
+[[ -s "~/.gvm/scripts/gvm" ]] && source "~/.gvm/scripts/gvm"
