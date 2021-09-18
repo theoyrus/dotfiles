@@ -10,6 +10,11 @@ lvim.colorscheme = "monokai"
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.insert_mode["<C-s>"] = "<Esc>:w<cr>a"
+lvim.keys.normal_mode["<C-d>"] = "Yp"
+lvim.keys.normal_mode["<C-a>"] = "<Esc>ggVG"
+lvim.keys.insert_mode["<F1>"] = "<Del>"
+lvim.keys.normal_mode["<F1>"] = "<Del>"
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = ""
 -- edit a default keymapping
@@ -32,7 +37,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
+lvim.builtin.nvimtree.show_icons.git = 1
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {}
@@ -50,6 +55,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 -- end
 
+-- Python
 -- set a formatter if you want to override the default lsp one (if it exists)
 lvim.lang.python.formatters = {
 	{
@@ -57,6 +63,36 @@ lvim.lang.python.formatters = {
 		args = {},
 	},
 }
+
+-- JavaScript
+-- exe value can be "prettier", "prettierd", "eslint", or "eslint_d"
+-- lvim.lang.javascript.formatters = { { exe = "prettier" } }
+-- lvim.lang.javascript.formatters = { { exe = "eslint" }, { exe = "prettier" } }
+-- lvim.lang.javascriptreact.formatters = lvim.lang.javascript.formatters
+
+-- GoLang -- exe value can be "gofmt", "goimports", or "gofumpt"
+lvim.lang.go.formatters = { { exe = "goimports" } }
+-- require("lspconfig").gopls.setup({
+-- 	cmd = { "gopls", "serve" },
+-- 	settings = { gopls = { analyses = { unusedparams = true }, staticcheck = true } },
+-- 	root_dir = require("lspconfig").util.root_pattern(".git", "go.mod", "."),
+-- 	init_options = { usePlaceholders = true, completeUnimported = true },
+-- 	on_attach = require("lsp").common_on_attach,
+-- })
+
+-- lvim.lang.go.lsp.setup = {
+-- 	cmd = { "gopls", "serve" },
+-- 	filetype = { "go", "gomod" },
+-- 	settings = {
+-- 		gopls = {
+-- 			analyses = {
+-- 				unusedparams = true,
+-- 			},
+-- 			staticcheck = true,
+-- 		},
+-- 	},
+-- }
+
 -- set an additional linter
 -- lvim.lang.python.linters = {
 --   {
@@ -127,6 +163,12 @@ lvim.plugins = {
 	{
 		"sheerun/vim-polyglot",
 	},
+	{
+		"editorconfig/editorconfig-vim",
+	},
+	-- {
+	-- 	"fatih/vim-go",
+	-- },
 }
 
 -- persistence pluggin keybindings
