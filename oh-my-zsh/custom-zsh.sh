@@ -37,6 +37,12 @@ dcupf() { docker-compose -f "$@" up -d; }
 dcdownf() { docker-compose -f "$@" down; }
 dcrestartf() { docker-compose -f "$@" down; docker-compose -f "$@" up -d; }
 
+# lvim
+lvim(){
+    tput smkx
+    command lvim $@
+}
+
 #git
 gstashstag() { git stash push -m "$@" -- $(git diff --staged --name-only); }
 
@@ -64,9 +70,13 @@ export PATH=$PATH:$HOME/Android/Gradle/bin
 # Flutter 
 export PATH="$PATH:$HOME/flutter/bin"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
