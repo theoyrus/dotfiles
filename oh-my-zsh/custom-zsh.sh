@@ -13,6 +13,7 @@ alias chmodallf='find . -type f -exec chmod 644 -- {} +'
 alias lsl='ls -lah'
 alias cleands='find . -name '.DS_Store' -type f -delete'
 alias fmem='sudo ps_mem'
+alias openport='sudo lsof -i -P -n | grep LISTEN'
 
 # alias for docker management
 alias dock='docker '
@@ -74,9 +75,25 @@ export PATH="$PATH:$HOME/flutter/bin"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
+# ----- fix vscode error on launch `Unable to resolve your shell environment in a reasonable time. Please review your shell configuration.`
+# https://stackoverflow.com/a/66513254
+function load-nvm {
+  export HOME_HDD='/DATA/diginet-35'
+  export NVM_DIR="$HOME_HDD/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+}
+
+# nvm
+if [[ "x${TERM_PROGRAM}" = "xvscode" ]]; then 
+  echo 'in vscode, nvm not work; use `load-nvm`';
+else 
+  load-nvm
+fi
+
+# -----
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
