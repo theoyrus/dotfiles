@@ -4,6 +4,7 @@
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
+HIST_STAMPS="%d/%m/%y %T"
 
 alias netmanres='sudo service network-manager restart'
 alias restartde='xfce4-panel -r && xfwm4 --replace'
@@ -32,6 +33,8 @@ alias gxls='git ls-files -v | grep ^h' # show git file excluded locally
 alias gxcom='git reset --soft HEAD~1' # cancel latest commit
 
 # custom
+alias history='omz_history -t '\''%d/%m/%y %T'\'
+
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
 dcupf() { docker-compose -f "$@" up -d; }
@@ -56,20 +59,27 @@ export PATH="$HOME/.node_modules_global/bin:$PATH"
 
 # SET JAVA ENVIRONTMENT
 #JAVA_HOME=/opt/java/jdk1.8.0_111
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
-export JAVA_HOME
-PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
-export PATH
+# JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
+# export JAVA_HOME
+# PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+# export PATH
 
 #ANDROID_HOME set path
 export ANDROID_HOME=$HOME/Android/Sdk/
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin
 
 #Gradle set path
-export PATH=$PATH:$HOME/Android/Gradle/bin
+# export PATH=$PATH:$HOME/Android/Gradle/bin
+
+# dart version manager
+if [[ -f ~/.dvm/scripts/dvm ]]; then
+  . ~/.dvm/scripts/dvm
+fi
 
 # Flutter 
-export PATH="$PATH:$HOME/flutter/bin"
+# export PATH="$PATH:$HOME/flutter/bin"
+# Flutter Version Manager
+export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -78,28 +88,11 @@ export PATH="$PATH:$HOME/flutter/bin"
 # export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# ----- fix vscode error on launch `Unable to resolve your shell environment in a reasonable time. Please review your shell configuration.`
-# https://stackoverflow.com/a/66513254
-function load-nvm {
-  export HOME_HDD='/DATA/diginet-35'
-  export NVM_DIR="$HOME_HDD/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-}
-
-# nvm
-if [[ "x${TERM_PROGRAM}" = "xvscode" ]]; then 
-  echo 'in vscode, nvm not work; use `load-nvm`';
-else 
-  load-nvm
-fi
-
-# -----
 
 # pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-#pyenv shell system # default use python system
 
 # Python bin, Created by `userpath` on 2020-11-15 12:09:07
 export PATH="$PATH:$HOME/.local/bin"
