@@ -109,3 +109,6 @@ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 # export GOPATH="$HOME/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+
+# thin line cursor
+echo '\e[5 q'
