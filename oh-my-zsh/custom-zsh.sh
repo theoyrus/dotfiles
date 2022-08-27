@@ -37,9 +37,15 @@ alias history='omz_history -t '\''%d/%m/%y %T'\'
 
 mkcd() { mkdir -p "$@" && cd "$@"; }
 
+CP() {
+    mkdir -p $(dirname "$2") && cp "$1" "$2"
+}
+
 dcupf() { docker-compose -f "$@" up -d; }
 dcdownf() { docker-compose -f "$@" down; }
 dcrestartf() { docker-compose -f "$@" down; docker-compose -f "$@" up -d; }
+dcimgsize() { docker manifest inspect -v "$1" | jq -c 'if type == "array" then .[] else . end' |  jq -r '[ ( .Descriptor.platform | [ .os, .architecture, .variant, ."os.version" ] | del(..|nulls) | join("/") ), ( [ .SchemaV2Manifest.layers[].size ] | add ) ] | join(" ")' | numfmt --to iec --format '%.2f' --field 2 | column -t ; }
+dcimgsz() { docker save "$1" | gzip > /tmp/"$1".tgz && du -sh /tmp/"$1".tgz && rm /tmp/"$1".tgz }
 
 # lvim
 lvim(){
@@ -63,6 +69,9 @@ export PATH="$HOME/.node_modules_global/bin:$PATH"
 # export JAVA_HOME
 # PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
 # export PATH
+
+# chrome executable
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
 #ANDROID_HOME set path
 export ANDROID_HOME=$HOME/Android/Sdk/
@@ -109,6 +118,8 @@ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 # export GOPATH="$HOME/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+export PATH="/home/theoyrus/.gvm/go/bin:$PATH"
 
 # thin line cursor
-echo '\e[5 q'
+#echo '\e[5 q'
+
