@@ -25,6 +25,7 @@ alias dcdown='docker-compose down' #stop and remove container created by docker-
 alias dcrestart='dcdown && dcup'
 alias dps='docker ps' #show docker process
 alias dcps='docker-compose ps' #show docker-compose process
+alias dccleanunusedimgs='docker rmi $(docker images -f dangling=true -q)'
 alias chwp='xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-1/workspace0/last-image -s $1'
 
 alias gxadd='git update-index --assume-unchanged ' # add git file excluded locally 
