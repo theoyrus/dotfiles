@@ -58,10 +58,10 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- Python
 -- set a formatter if you want to override the default lsp one (if it exists)
 lvim.lang.python.formatters = {
-	{
-		exe = "black",
-		args = {},
-	},
+  {
+    exe = "black",
+    args = {},
+  },
 }
 
 -- JavaScript
@@ -104,71 +104,71 @@ lvim.lang.lua.formatters = { { exe = "stylua" } }
 
 -- Additional Plugins
 lvim.plugins = {
-	--     {"folke/tokyonight.nvim"}, {
-	--         "ray-x/lsp_signature.nvim",
-	--         config = function() require"lsp_signature".on_attach() end,
-	--         event = "InsertEnter"
-	--     },
-	{
-		"f-person/git-blame.nvim",
-		event = "BufRead",
-		config = function()
-			vim.cmd("highlight default link gitblame SpecialComment")
-			vim.g.gitblame_enabled = 0
-		end,
-	},
-	{
-		"sindrets/diffview.nvim",
-		event = "BufRead",
-	},
-	{
-		"rmagatti/goto-preview",
-		config = function()
-			require("goto-preview").setup({
-				width = 120, -- Width of the floating window
-				height = 25, -- Height of the floating window
-				default_mappings = false, -- Bind default mappings
-				debug = false, -- Print debug information
-				opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
-				post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
-				-- You can use "default_mappings = true" setup option
-				-- Or explicitly set keybindings
-				-- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
-				-- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
-				-- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
-			})
-		end,
-	},
-	{
-		"simrat39/symbols-outline.nvim",
-		cmd = "SymbolsOutline",
-	},
-	{
-		"tanvirtin/monokai.nvim",
-	},
-	{
-		"folke/persistence.nvim",
-		event = "VimEnter",
-		module = "persistence",
-		config = function()
-			require("persistence").setup({
-				dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
-				options = { "buffers", "curdir", "tabpages", "winsize" },
-			})
-		end,
-	},
-	{
-		"wakatime/vim-wakatime",
-	},
-	{
-		"sheerun/vim-polyglot",
-	},
-	{
-		"editorconfig/editorconfig-vim",
-	},
-	-- {
-	-- 	"fatih/vim-go",
-	-- },
+  --     {"folke/tokyonight.nvim"}, {
+  --         "ray-x/lsp_signature.nvim",
+  --         config = function() require"lsp_signature".on_attach() end,
+  --         event = "InsertEnter"
+  --     },
+  {
+    "f-person/git-blame.nvim",
+    event = "BufRead",
+    config = function()
+      vim.cmd("highlight default link gitblame SpecialComment")
+      vim.g.gitblame_enabled = 0
+    end,
+  },
+  {
+    "sindrets/diffview.nvim",
+    event = "BufRead",
+  },
+  {
+    "rmagatti/goto-preview",
+    config = function()
+      require("goto-preview").setup({
+        width = 120, -- Width of the floating window
+        height = 25, -- Height of the floating window
+        default_mappings = false, -- Bind default mappings
+        debug = false, -- Print debug information
+        opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        post_open_hook = nil, -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        -- You can use "default_mappings = true" setup option
+        -- Or explicitly set keybindings
+        -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+        -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+        -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+      })
+    end,
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = "SymbolsOutline",
+  },
+  {
+    "tanvirtin/monokai.nvim",
+  },
+  {
+    "folke/persistence.nvim",
+    event = "VimEnter",
+    module = "persistence",
+    config = function()
+      require("persistence").setup({
+        dir = vim.fn.expand(vim.fn.stdpath("config") .. "/session/"),
+        options = { "buffers", "curdir", "tabpages", "winsize" },
+      })
+    end,
+  },
+  {
+    "wakatime/vim-wakatime",
+  },
+  {
+    "sheerun/vim-polyglot",
+  },
+  {
+    "editorconfig/editorconfig-vim",
+  },
+  -- {
+  -- 	"fatih/vim-go",
+  -- },
 }
 
 -- persistence pluggin keybindings
