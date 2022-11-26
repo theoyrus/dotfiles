@@ -15,6 +15,7 @@ alias lsl='ls -lah'
 alias cleands='find . -name '.DS_Store' -type f -delete'
 alias fmem='sudo ps_mem'
 alias openport='sudo lsof -i -P -n | grep LISTEN'
+alias pipsh='pipenv shell'
 
 # alias for docker management
 alias dock='docker '
@@ -26,6 +27,10 @@ alias dcrestart='dcdown && dcup'
 alias dps='docker ps' #show docker process
 alias dcps='docker-compose ps' #show docker-compose process
 alias dccleanunusedimgs='docker rmi $(docker images -f dangling=true -q)'
+
+# alias for kubectl
+# alias kubectl='minikube kubectl --'
+
 alias chwp='xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorLVDS-1/workspace0/last-image -s $1'
 
 alias gxadd='git update-index --assume-unchanged ' # add git file excluded locally 
@@ -64,6 +69,11 @@ export PATH="$NPM_PACKAGES/bin:$PATH"
 #GLOBAL NODE_MODULES bin
 export PATH="$HOME/.node_modules_global/bin:$PATH"
 
+# NVM - Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # SET JAVA ENVIRONTMENT
 #JAVA_HOME=/opt/java/jdk1.8.0_111
 # JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
@@ -91,14 +101,6 @@ fi
 # Flutter Version Manager
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -118,9 +120,28 @@ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # export GOPATH="$HOME/go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
+# GVM (Golang Version Manager)
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 export PATH="/home/theoyrus/.gvm/go/bin:$PATH"
 
 # thin line cursor
 #echo '\e[5 q'
 
+# phpenv
+# export PHPENV_ROOT="/home/theoyrus/.phpenv"
+# if [ -d "${PHPENV_ROOT}" ]; then
+#   export PATH="${PHPENV_ROOT}/bin:${PATH}"
+#   eval "$(phpenv init -)"
+# fi
+
+# phpbrew
+# [[ -e ~/.phpbrew/bashrc ]] && source ~/.phpbrew/bashrc
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Kubernetes tools autocompletion
+# [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
+# [[ $commands[minikube] ]] && source <(minikube completion zsh)
+#[[ $commands[helm]] && source <(helm completion zsh)
